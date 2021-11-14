@@ -3,5 +3,5 @@
 ## Installation
 
 ```shell
-bash <(curl -s https://raw.githubusercontent.com/redsuperbat/docker-compose-rsb/main/install.sh)
+bash <(curl -s https://raw.githubusercontent.com/redsuperbat/rsb-services/main/install.sh)
 ```
