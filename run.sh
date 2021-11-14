@@ -17,10 +17,10 @@ REPO_PATH=~/Versioned/rsb-services
 #   sudo mkdir /plex/config
 # fi
 
-docker-compose up -d -f $REPO_PATH/plex/docker-compose.yaml
+docker-compose -f $REPO_PATH/plex/docker-compose.yaml up -d
 
 # Portainer
-docker-compose up -d -f $REPO_PATH/portainer/docker-compose.yaml
+docker-compose -f $REPO_PATH/portainer/docker-compose.yaml up -d
 
 # Nextcloud
-docker-compose up -d -f $REPO_PATH/nextcloud/docker-compose.yaml
+docker-compose -f $REPO_PATH/nextcloud/docker-compose.yaml up -d
