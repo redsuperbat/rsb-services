@@ -6,7 +6,7 @@ if [ -d ~/Versioned/$REPO ]; then
   git pull
   cd ~
 else
-  git clone https://github.com/redsuperbat/${REPO}.git ~/Versioned/$REPO
+  git clone https://github.com/redsuperbat/$REPO.git ~/Versioned/$REPO
 fi
 
-sh ~/Versioned/docker-compose-rsb/run.sh
+sh ~/Versioned/$REPO/run.sh
