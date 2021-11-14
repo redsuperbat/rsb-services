@@ -1,8 +1,8 @@
 # Plex
 REPO_PATH=~/Versioned/rsb-services
 
-# if [ ! -d /plex ]; then
-#   sudo mkdir /plex
+# if [ ! /plex ]; then
+#   sudo mkdir -d /plex
 # fi
 
 # if [ ! -d /plex/movies ]; then
@@ -17,10 +17,10 @@ REPO_PATH=~/Versioned/rsb-services
 #   sudo mkdir /plex/config
 # fi
 
-docker-compose run -d -f $REPO_PATH/plex/docker-compose.yaml
+docker-compose up -f $REPO_PATH/plex/docker-compose.yaml -d
 
 # Portainer
-docker-compose run -d -f $REPO_PATH/portainer/docker-compose.yaml
+docker-compose up -f $REPO_PATH/portainer/docker-compose.yaml -d
 
 # Nextcloud
-docker-compose run -d -f $REPO_PATH/nextcloud/docker-compose.yaml
+docker-compose up -f $REPO_PATH/nextcloud/docker-compose.yaml -d
