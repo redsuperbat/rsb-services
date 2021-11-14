@@ -35,6 +35,7 @@ if [ ! -f $REPO_PATH/nextcloud/postgres.env ] || [ ! -f $REPO_PATH/nextcloud/nex
   echo $POSTGRES_USER >>$REPO_PATH/nextcloud/nextcloud.env
   echo "REDIS_HOST=redis" >>$REPO_PATH/nextcloud/nextcloud.env
   echo "POSTGRES_HOST=postgres" >>$REPO_PATH/nextcloud/nextcloud.env
+  echo "POSTGRES_DB=nextcloud" >>$REPO_PATH/nextcloud/nextcloud.env
 fi
 
 # Nextcloud
