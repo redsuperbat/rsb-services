@@ -1,4 +1,4 @@
-REPO=docker-compose-rsb
+REPO=rsb-services
 
 # Fetch repo from github
 if [ -d ~/Versioned/$REPO ]; then
@@ -6,7 +6,7 @@ if [ -d ~/Versioned/$REPO ]; then
   git pull
   cd ~
 else
-  git clone git@github.com:redsuperbat/${REPO}.git ~/Versioned/$REPO
+  git clone https://github.com/redsuperbat/${REPO}.git ~/Versioned/$REPO
 fi
 
 sh ~/Versioned/docker-compose-rsb/run.sh
