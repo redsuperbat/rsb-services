@@ -5,9 +5,9 @@ services:
     image: postgres
     container_name: nextcloud_postgres
     restart: unless-stopped
-    env-file:
+    env_file:
       - postgres.env
-  
+
   redis:
     container_name: nextcloud_redis
     image: redis:alpine
@@ -17,7 +17,7 @@ services:
     image: nextcloud
     container_name: nextcloud
     restart: always
-    env-file:
+    env_file:
       - nextcloud.env
     volumes:
       - :/var/www/html
