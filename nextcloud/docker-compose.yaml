@@ -2,15 +2,19 @@ version: "3"
 
 services:
   postgres:
-    image: postgres
+    image: postgres:alpine
     container_name: nextcloud_postgres
     restart: unless-stopped
+    volumes:
+      - /nextcloud/postgres:/var/lib/postgresql/data
     env_file:
       - postgres.env
 
   redis:
     container_name: nextcloud_redis
     image: redis:alpine
+    volumes:
+      - /nextcloud/redis:/data
     restart: unless-stopped
 
   nextcloud:
@@ -20,7 +24,7 @@ services:
     env_file:
       - nextcloud.env
     volumes:
-      - :/var/www/html
+      - /nextcloud/data:/var/www/html
     depends_on:
       - postgres
       - redis
