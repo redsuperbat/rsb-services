@@ -29,12 +29,12 @@ if [ ! -f $REPO_PATH/nextcloud/postgres.env ] || [ ! -f $REPO_PATH/nextcloud/nex
   read PG_PWD
   POSTGRES_USER="POSTGRES_USER=$PG_USER"
   POSTGRES_PASSWORD="POSTGRES_PASSWORD=$PG_PWD"
-  echo $POSTGRES_PASSWORD >$REPO_PATH/nextcloud/postgres.env
-  echo $POSTGRES_USER >$REPO_PATH/nextcloud/postgres.env
-  echo $POSTGRES_PASSWORD >$REPO_PATH/nextcloud/nextcloud.env
-  echo $POSTGRES_USER >$REPO_PATH/nextcloud/nextcloud.env
-  echo "REDIS_HOST=redis" >$REPO_PATH/nextcloud/nextcloud.env
-  echo "POSTGRES_HOST=postgres" >$REPO_PATH/nextcloud/nextcloud.env
+  echo $POSTGRES_PASSWORD >>$REPO_PATH/nextcloud/postgres.env
+  echo $POSTGRES_USER >>$REPO_PATH/nextcloud/postgres.env
+  echo $POSTGRES_PASSWORD >>$REPO_PATH/nextcloud/nextcloud.env
+  echo $POSTGRES_USER >>$REPO_PATH/nextcloud/nextcloud.env
+  echo "REDIS_HOST=redis" >>$REPO_PATH/nextcloud/nextcloud.env
+  echo "POSTGRES_HOST=postgres" >>$REPO_PATH/nextcloud/nextcloud.env
 fi
 
 # Nextcloud
