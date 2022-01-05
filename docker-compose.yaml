@@ -1,23 +1,5 @@
 version: '3.5'
-# Documentation : https://docs.photoprism.app/getting-started/docker-compose/
-# Docker Hub URL: https://hub.docker.com/r/photoprism/photoprism/
-#
-# DOCKER COMPOSE COMMAND REFERENCE
-# see https://docs.photoprism.app/getting-started/docker-compose/#command-line-interface
-# --------------------------------------------------------------------------
-# Start    | docker-compose up -d
-# Stop     | docker-compose stop
-# Update   | docker-compose pull
-# Logs     | docker-compose logs --tail=25 -f
-# Terminal | docker-compose exec photoprism bash
-# Help     | docker-compose exec photoprism photoprism help
-# Config   | docker-compose exec photoprism photoprism config
-# Reset    | docker-compose exec photoprism photoprism reset
-# Backup   | docker-compose exec photoprism photoprism backup -a -i
-# Restore  | docker-compose exec photoprism photoprism restore -a -i
-# Index    | docker-compose exec photoprism photoprism index
-# Reindex  | docker-compose exec photoprism photoprism index -f
-# Import   | docker-compose exec photoprism photoprism import
+
 services:
   photoprism:
     image: photoprism/photoprism:latest
@@ -106,3 +88,60 @@ services:
       MYSQL_DATABASE: photoprism
       MYSQL_USER: photoprism
       MYSQL_PASSWORD: insecure
+
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM= #optional
+    volumes:
+      - /plex/config:/config
+      - /plex/tv:/tv
+      - /plex/movies:/movies
+    restart: unless-stopped
+  
+  postgres:
+    image: postgres:alpine
+    container_name: nextcloud_postgres
+    restart: unless-stopped
+    volumes:
+      - /nextcloud/postgres:/var/lib/postgresql/data
+    env_file:
+      - postgres.env
+
+  redis:
+    container_name: nextcloud_redis
+    image: redis:alpine
+    volumes:
+      - /nextcloud/redis:/data
+    restart: unless-stopped
+
+  nextcloud:
+    image: nextcloud
+    container_name: nextcloud
+    restart: always
+    env_file:
+      - nextcloud.env
+    volumes:
+      - /nextcloud/data:/var/www/html
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - 8081:80
+  
+  portainer:
+    image: portainer/portainer-ce
+    container_name: portainer
+    command: -H unix:///var/run/docker.sock
+    restart: unless-stopped
+    ports:
+      - 9000:9000
+      - 8000:8000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /portainer_data:/data
